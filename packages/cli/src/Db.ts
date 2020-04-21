@@ -21,8 +21,6 @@ import {
 	MySQLDb,
 } from './databases';
 
-
-
 export let collections: IDatabaseCollections = {
 	Credentials: null,
 	Execution: null,
@@ -47,8 +45,6 @@ export async function init(synchronize?: boolean): Promise<IDatabaseCollections>
 				entityPrefix: await GenericHelpers.getConfigValue('database.tablePrefix') as string,
 				url: await GenericHelpers.getConfigValue('database.mongodb.connectionUrl') as string,
 				useNewUrlParser: true,
-				migrationsRun: true,
-				migrations: ["./databases/mongodb/Migrations/*.ts"]
 			};
 			break;
 
@@ -64,8 +60,6 @@ export async function init(synchronize?: boolean): Promise<IDatabaseCollections>
 				port: await GenericHelpers.getConfigValue('database.postgresdb.port') as number,
 				username: await GenericHelpers.getConfigValue('database.postgresdb.user') as string,
 				schema: await GenericHelpers.getConfigValue('database.postgresdb.schema') as string,
-				migrationsRun: true,
-				migrations: ["./databases/postgresdb/Migrations/*.ts"]
 			};
 			break;
 
@@ -81,8 +75,6 @@ export async function init(synchronize?: boolean): Promise<IDatabaseCollections>
 				password: await GenericHelpers.getConfigValue('database.mysqldb.password') as string,
 				port: await GenericHelpers.getConfigValue('database.mysqldb.port') as number,
 				username: await GenericHelpers.getConfigValue('database.mysqldb.user') as string,
-				migrationsRun: true,
-				migrations: ["./databases/mysqldb/Migrations/*.ts"]
 			};
 			break;
 
@@ -93,8 +85,6 @@ export async function init(synchronize?: boolean): Promise<IDatabaseCollections>
 				type: 'sqlite',
 				database: path.join(n8nFolder, 'database.sqlite'),
 				entityPrefix: await GenericHelpers.getConfigValue('database.tablePrefix') as string,
-				migrationsRun: true,
-				migrations: ["./databases/sqlite/Migrations/*.ts"]
 			};
 			break;
 
